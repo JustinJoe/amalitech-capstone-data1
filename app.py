@@ -179,12 +179,8 @@ if not df.empty:
         st.markdown('<div class="chart-container"><div class="chart-title">Seasonal Price Index</div>', unsafe_allow_html=True)
         
         # **PLACE YOUR CODE HERE** (Joseph Mensah)
-        selected_commodity = "Maize"
-
-        commodity_df = df[df["commodity"] == selected_commodity].copy()
-
         monthly_average = (
-            commodity_df
+            techiman_df
                 .groupby(["month", "month_name"], as_index=False)["price"]
                 .mean()
                 .sort_values("month")
@@ -194,7 +190,6 @@ if not df.empty:
             monthly_average,
             x="month_name",
             y="price",
-            title=f"Historical Price Patern - {selected_commodity}",
             labels={
                 "month_name": "Month",
                 "price": "Average Historical Price (GH₵)"
